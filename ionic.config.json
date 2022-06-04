@@ -1,0 +1,7 @@
+{
+  "name": "firehouse",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
