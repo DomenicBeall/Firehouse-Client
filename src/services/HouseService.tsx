@@ -1,3 +1,5 @@
+const { v4: uuidv4 } = require("uuid");
+
 const TEST_USER_ID = "TestUser";
 
 type House = {
@@ -23,7 +25,7 @@ const HouseService = {
     },
     createHouse: (housename: string) => {
         var house: House = {
-            id: "Test",
+            id: uuidv4(),
             name: housename,
             memberIds: [ TEST_USER_ID ] // Populate user ids with fake user
         };
