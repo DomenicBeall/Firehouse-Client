@@ -1,9 +1,8 @@
-import { IonButton, IonContent, IonHeader, IonMenu, IonPage, IonTitle, IonToolbar, IonItem, IonList, IonMenuButton, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonAvatar } from '@ionic/react';
+import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonAvatar } from '@ionic/react';
 import './Home.css';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const Home: React.FC = () => {
-
   const { logout, user } = useAuth0();
 
   return (
