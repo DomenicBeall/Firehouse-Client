@@ -1,4 +1,7 @@
 const TEST_USER_ID = 'TestUser';
+const { v4: uuidv4 } = require("uuid");
+
+const TEST_USER_ID = "TestUser";
 
 type House = {
   id: string;
@@ -13,19 +16,19 @@ const HouseService = {
     userId = TEST_USER_ID; // Debug so that user id is always the same
 
     return allHouses.filter((house) => {
-      return house.memberIds.includes(userId);
+        return house.memberIds.includes(userId);
     });
   },
   getHouseById: (houseId: string) => {
     return allHouses.find((house) => {
-      return house.id === houseId;
+        return house.id === houseId;
     });
   },
   createHouse: (housename: string) => {
     var house: House = {
-      id: 'Test',
-      name: housename,
-      memberIds: [TEST_USER_ID], // Populate user ids with fake user
+        id: uuidv4(),
+        name: housename,
+        memberIds: [ TEST_USER_ID ] // Populate user ids with fake user
     };
 
     allHouses.push(house);
