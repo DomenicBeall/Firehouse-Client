@@ -12,32 +12,39 @@ import {
 } from '@ionic/react';
 import React, { useState } from 'react';
 import './CreateHouse.css';
+import HouseService from '../services/HouseService';
 
-type CreateHouseProps = {
-  createHouseModalOpen: boolean;
-  setCreateHouseModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const CreateHouse = (props: CreateHouseProps) => {
-  const [formValue, setFormValue] = useState({
-    houseName: '',
-  });
+const CreateHouse = (props) => {
+  const [houseName, setHouseName] = useState('');
 
   return (
     <IonModal isOpen={props.createHouseModalOpen} backdropDismiss={false}>
       <IonContent>
         <h1>Create a House</h1>
-        <form>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            HouseService.createHouse(houseName);
+            props.reloadHouses();
+            props.setCreateHouseModalOpen(false);
+          }}
+        >
           <IonList>
             <IonItem>
               <IonLabel position="floating">Enter House Name:</IonLabel>
-              <IonInput value={formValue.houseName} name="houseName"></IonInput>
+              <IonInput
+                value={houseName}
+                name="houseName"
+                onIonChange={(e) => {
+                  setHouseName(e.target.value);
+                }}
+              ></IonInput>
             </IonItem>
             <IonButton type="submit">Submit</IonButton>
           </IonList>
         </form>
         <IonButton
-          onClick={() => {
+          onClick={(e) => {
             props.setCreateHouseModalOpen(false);
           }}
         >
