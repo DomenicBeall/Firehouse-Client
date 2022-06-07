@@ -1,9 +1,5 @@
 import { Redirect, Route } from 'react-router-dom';
-import {
-  IonApp,
-  IonRouterOutlet,
-  setupIonicReact
-} from '@ionic/react';
+import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -27,6 +23,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import ProtectedRoute from './components/ProtectedRoute';
+import HousePage from './pages/HousePage';
 
 setupIonicReact();
 
@@ -39,6 +36,9 @@ const App: React.FC = () => (
         </Route>
         <ProtectedRoute exact path="/">
           <Home />
+        </ProtectedRoute>
+        <ProtectedRoute exact path="/house/:id">
+          <HousePage />
         </ProtectedRoute>
       </IonRouterOutlet>
     </IonReactRouter>
