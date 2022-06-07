@@ -8,14 +8,14 @@ import {
   IonItem,
   IonPage,
 } from '@ionic/react';
-// import { Link, Navigate, useNavigate } from 'react-router-dom';
+ import { Link, Navigate, useHistory } from 'react-router-dom';
 
 function ListHouseItem({ house }) {
-  // const navigate = useNavigate();
+  const history = useHistory();
 
-  // const ViewHandler = () => {
-  //   navigate('/house/:id');
-  // };
+  const ViewHandler = () => {
+     history.push('/house/' + house.id);
+   };
 
   return (
     <IonCard>
@@ -25,7 +25,7 @@ function ListHouseItem({ house }) {
         </IonItem>
         <IonCardContent>{house.id}</IonCardContent>
         <IonCardContent>
-          <IonButton>View (Not Working)</IonButton>
+          <IonButton onClick={ViewHandler}>View (Not Working)</IonButton>
         </IonCardContent>
       </IonCardHeader>
     </IonCard>
