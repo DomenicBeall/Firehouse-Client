@@ -18,7 +18,6 @@ import { useEffect, useState } from 'react';
 import CreateHouse from '../components/CreateHouse';
 import ListHouseItem from '../components/ListHouseItem';
 import HouseService from '../services/HouseService';
-import Axios from 'axios';
 import JoinHouse from '../components/JoinHouse';
 
 const Home = () => {
@@ -32,8 +31,7 @@ const Home = () => {
   }, []);
 
   function LoadHouses() {
-    var houses = HouseService.getHousesByUserId('TestUser');
-    console.log(houses);
+    var houses = HouseService.getHousesByUserId(user.sub);
     setHouses(houses);
   }
 

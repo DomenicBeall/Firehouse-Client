@@ -10,17 +10,14 @@ import {
 import React, { useState } from 'react';
 import './CreateHouse.css';
 import HouseService from '../services/HouseService';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const JoinHouse = (props) => {
   const [JoinHouseID, setJoinHouseID] = useState('');
+  const { user } = useAuth0();
 
   const JoinHouseHandler = async () => {
-    if (HouseService.getHouseById(JoinHouseID)) {
-      console.log('house Joined');
-    } else {
-      console.log('House not joined');
-      return;
-    }
+    HouseService.joinHouse(user.sub, JoinHouseID);
   };
 
   return (

@@ -1,18 +1,16 @@
-const TEST_USER_ID = 'TestUser';
 const { v4: uuidv4 } = require('uuid');
 
 type House = {
   id: string;
   name: string;
   memberIds: string[];
+  adminId: string;
 };
 
 var allHouses: House[] = [];
 
 const HouseService = {
   getHousesByUserId: (userId: string) => {
-    userId = TEST_USER_ID; // Debug so that user id is always the same
-
     return allHouses.filter((house) => {
       return house.memberIds.includes(userId);
     });
@@ -22,11 +20,12 @@ const HouseService = {
       return house.id === houseId;
     });
   },
-  createHouse: (housename: string) => {
+  createHouse: (housename: string, adminId: string) => {
     var house: House = {
-      id: 'houseid', //uuidv4(),
+      id: uuidv4(),
       name: housename,
-      memberIds: [TEST_USER_ID], // Populate user ids with fake user
+      memberIds: [adminId], // Populate user ids with fake user
+      adminId: adminId
     };
 
     allHouses.push(house);
@@ -70,6 +69,23 @@ const HouseService = {
       return false;
     }
   },
+  joinHouse: (userId: string, houseId: string) => {
+    var index = allHouses.findIndex((house) => {
+      return house.id === houseId;
+    });
+    
+    // Check that the house exists
+    if (index !== -1) {
+      // Check the user isn't already in the house
+      if (!allHouses[index].memberIds.includes(userId)) {
+        allHouses[index].memberIds.push(userId);
+      } else {
+        console.error(`You are already a member of this house!`);
+      }
+    } else {
+      console.error(`No house with ID ${houseId} found!`);
+    }
+  }
 };
 
 export default HouseService;

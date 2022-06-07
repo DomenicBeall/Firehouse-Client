@@ -6,11 +6,7 @@ const Login: React.FC = () => {
 
   const { loginWithRedirect } = useAuth0();
   const { user, isAuthenticated, isLoading } = useAuth0();
-
-  if (isAuthenticated && !isLoading) {
-    console.log(user);
-  }
-
+  
   return (
     <IonPage>
       <IonHeader>

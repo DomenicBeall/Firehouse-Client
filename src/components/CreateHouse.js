@@ -13,9 +13,11 @@ import {
 import React, { useState } from 'react';
 import './CreateHouse.css';
 import HouseService from '../services/HouseService';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const CreateHouse = (props) => {
   const [houseName, setHouseName] = useState('');
+  const { user } = useAuth0();
 
   return (
     <IonModal isOpen={props.createHouseModalOpen} backdropDismiss={false}>
@@ -24,7 +26,7 @@ const CreateHouse = (props) => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            HouseService.createHouse(houseName);
+            HouseService.createHouse(houseName, user.sub);
             props.reloadHouses();
             props.setCreateHouseModalOpen(false);
           }}
