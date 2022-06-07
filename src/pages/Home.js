@@ -19,10 +19,12 @@ import CreateHouse from '../components/CreateHouse';
 import ListHouseItem from '../components/ListHouseItem';
 import HouseService from '../services/HouseService';
 import Axios from 'axios';
+import JoinHouse from '../components/JoinHouse';
 
 const Home = () => {
   const { logout, user } = useAuth0();
   const [createHouseModalOpen, setCreateHouseModalOpen] = useState(false);
+  const [JoinHouseModalOpen, setJoinHouseModalOpen] = useState(false);
   const [houses, setHouses] = useState([]);
 
   useEffect(() => {
@@ -40,6 +42,18 @@ const Home = () => {
       <IonHeader>
         <IonToolbar>
           <IonTitle>Home Page</IonTitle>
+          <IonButton
+            slot="end"
+            onClick={() => {
+              setJoinHouseModalOpen(true);
+            }}
+          >
+            Join a House (test)
+          </IonButton>
+          <JoinHouse
+            JoinHouseModalOpen={JoinHouseModalOpen}
+            setJoinHouseModalOpen={setJoinHouseModalOpen}
+          ></JoinHouse>
           <IonButton
             slot="end"
             onClick={() => {
