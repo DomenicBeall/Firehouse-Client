@@ -30,8 +30,8 @@ const Home = () => {
     LoadHouses();
   }, []);
 
-  function LoadHouses() {
-    var houses = HouseService.getHousesByUserId(user.sub);
+  async function LoadHouses() {
+    var houses = await HouseService.getHousesByUserId(user.sub);
     setHouses(houses);
   }
 
@@ -94,7 +94,7 @@ const Home = () => {
         </IonCard>
         <br />
         {houses.map((houses, index) => (
-          <ListHouseItem house={houses} key={index}></ListHouseItem>
+          <ListHouseItem  house={houses} key={index} reloadHouses={LoadHouses}></ListHouseItem>
         ))}
       </IonContent>
     </IonPage>

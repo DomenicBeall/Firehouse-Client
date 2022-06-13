@@ -2,6 +2,7 @@
   "name": "firehouse",
   "version": "0.0.1",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@auth0/auth0-react": "^1.10.1",
     "@capacitor/app": "1.1.1",

@@ -24,9 +24,11 @@ const CreateHouse = (props) => {
       <IonContent>
         <h1>Create a House</h1>
         <form
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
-            HouseService.createHouse(houseName, user.sub);
+
+            await HouseService.createHouse(houseName, user.sub);
+            
             props.reloadHouses();
             props.setCreateHouseModalOpen(false);
           }}

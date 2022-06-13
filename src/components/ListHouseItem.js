@@ -5,17 +5,25 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonContent,
+  IonIcon,
   IonItem,
   IonPage,
 } from '@ionic/react';
+import { trashOutline } from 'ionicons/icons';
  import { Link, Navigate, useHistory } from 'react-router-dom';
+import HouseService from '../services/HouseService';
 
-function ListHouseItem({ house }) {
+function ListHouseItem({ house, reloadHouses }) {
   const history = useHistory();
 
-  const ViewHandler = () => {
+  const viewHandler = () => {
      history.push('/house/' + house.id);
-   };
+  };
+
+  const deleteHandler = async () => {
+    await HouseService.deleteHouseById(house.id);
+    reloadHouses();
+  }
 
   return (
     <IonCard>
@@ -25,7 +33,10 @@ function ListHouseItem({ house }) {
         </IonItem>
         <IonCardContent>{house.id}</IonCardContent>
         <IonCardContent>
-          <IonButton onClick={ViewHandler}>View (Not Working)</IonButton>
+          <IonButton onClick={viewHandler}>View (Not Working)</IonButton>
+          <IonButton onClick={deleteHandler} color="danger">
+            <IonIcon icon={trashOutline}></IonIcon>
+          </IonButton>
         </IonCardContent>
       </IonCardHeader>
     </IonCard>
